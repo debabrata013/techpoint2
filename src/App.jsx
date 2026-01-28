@@ -1,0 +1,52 @@
+import React, { useState, useLayoutEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
+import Home from './pages/Home';
+import AboutPage from './pages/AboutPage';
+import ServicesPage from './pages/ServicesPage';
+import Ecommerce from './pages/Ecommerce';
+import AppDevelopment from './pages/AppDevelopment';
+import TopProjects from './pages/TopProjects';
+import Career from './pages/Career';
+import ContactPage from './pages/ContactPage';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
+import Sitemap from './pages/Sitemap';
+
+// Register GSAP plugins globally
+gsap.registerPlugin(ScrollTrigger);
+
+function App() {
+
+  return (
+    <Router>
+      <div className="min-h-screen flex flex-col font-sans text-primary bg-bg-light">
+        <Navbar />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/ecommerce" element={<Ecommerce />} />
+            <Route path="/app-development" element={<AppDevelopment />} />
+            <Route path="/top-projects" element={<TopProjects />} />
+            <Route path="/portfolio" element={<Navigate to="/top-projects" replace />} />
+            <Route path="/career" element={<Career />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/sitemap" element={<Sitemap />} />
+          </Routes>
+        </main>
+        <Footer />
+        <ScrollToTop />
+      </div>
+    </Router>
+  );
+}
+
+export default App;
